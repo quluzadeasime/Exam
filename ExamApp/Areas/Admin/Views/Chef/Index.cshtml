@@ -1,0 +1,50 @@
+﻿@using Core.Models
+@model List<Chef>
+
+@{
+    int count = 0;
+}
+
+<div class="container">
+    <table class="table">
+        <h2>
+            Chefs
+            <a  class="btn btn-primary" asp-action="Create">Create</a>
+        </h2>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Processing</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@item.Id</td>
+                    <td>@item.Fullname</td>
+                    <td>@item.Description</td>
+
+                    <td>
+                        <div style="width:100px">
+                            <img style="width:100% " src="~/uploads/@item.ImgUrl"></img>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Update" asp-controller="Chef" asp-route-id="@item.Id">Update</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-controller="Chef" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+
+</div>
